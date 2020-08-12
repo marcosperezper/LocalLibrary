@@ -25,14 +25,13 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
-    context_object_name = 'my_book_list' 
-    template_name = 'books/'
+    paginate_by = 10
 
-    def get_queryset(self):
-        return Book.objects.filter(title__icontains='El')[:5]
-    def get_context_data(self,**kwargs):
-        #Call the base implementation fisrt to get a context
-        context = super(BookListView, self).get_context_data(**kwargs)
-        #Get the blog from id and add it to the context
-        context['some_data'] = 'This is just some data'
-        return context
+class BookDetailView(generic.DetailView):
+    model = Book
+
+class AuthorListView(generic.ListView):
+    model = Author
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
