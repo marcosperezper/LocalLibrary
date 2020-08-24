@@ -33,7 +33,7 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(BookInstance)
 class BookInstance(admin.ModelAdmin):
      #Mostrar los campos en forma de lista
-     list_display = ('id','book','status','due_back')
+     list_display = ('id','book', 'borrower','status','due_back')
      #Filtro por estado y fecha limite
      list_filter = ('status', 'due_back')
      #Separar los campos por secciones
@@ -42,6 +42,6 @@ class BookInstance(admin.ModelAdmin):
              'fields' : ('book','imprint','id')
          }),
          ('Availability', {
-             'fields' : ('status','due_back')
+             'fields' : ('status','due_back','borrower')
          }),
      )
